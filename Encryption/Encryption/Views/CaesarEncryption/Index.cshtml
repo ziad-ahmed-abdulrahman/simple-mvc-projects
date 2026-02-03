@@ -1,0 +1,136 @@
+﻿@{
+    ViewBag.Title = "Caesar Options";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            background-color: #f8f9fa;
+        }
+
+        .center-container {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cards-row {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .option-card {
+            border-radius: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            background-color: #ffffff;
+            padding: 3rem 1rem;
+            text-align: center;
+            width: 300px;
+        }
+
+            .option-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            }
+
+            .option-card h3 {
+                font-weight: 600;
+                font-size: 1.8rem;
+            }
+
+            .option-card p {
+                font-weight: 400;
+                font-size: 1rem;
+                line-height: 1.5;
+                color: #6c757d;
+            }
+
+        .bi {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .encrypt-card .bi,
+        .encrypt-card h3 {
+            color: #0d6efd;
+        }
+
+        .decrypt-card .bi,
+        .decrypt-card h3 {
+            color: #198754;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container my-4 text-center">
+
+        <div class="row justify-content-center g-4 mb-4">
+            <!-- Encrypt Card -->
+            <div class="col-auto">
+                <a asp-action="Encrypt" class="text-decoration-none" title="Encrypt with Caesar">
+                    <div class="card shadow-lg option-card encrypt-card" style="width: 300px; cursor:pointer;">
+                        <i class="bi bi-lock-fill fs-2 mb-2" style="color:#0d6efd;"></i>
+                        <h3>Encrypt</h3>
+                        <p>Encrypt your text securely using Caesar Encryption</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Decrypt Card -->
+            <div class="col-auto">
+                <a asp-action="Decrypt" class="text-decoration-none" title="Decrypt with Caesar">
+                    <div class="card shadow-lg option-card decrypt-card" style="width: 300px; cursor:pointer;">
+                        <i class="bi bi-unlock-fill fs-2 mb-2" style="color:#198754;"></i>
+                        <h3>Decrypt</h3>
+                        <p>Decrypt your encrypted text easily and securely</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Home Card (underneath and centered) -->
+        <div class="row justify-content-center mt-3">
+            <div class="col-auto">
+                <a asp-controller="Home" asp-action="Index" class="text-decoration-none" title="Return to Home Page">
+                    <div class="card shadow-lg option-card home-card" style="width: 300px; cursor:pointer;">
+                        <i class="bi bi-house-door-fill fs-2 mb-2" style="color:#6c757d;"></i>
+                        <h3>Home</h3>
+                        <p>Return to the main page</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+
+  
+
+       
+
+
+
+</body>
+</html>
+
+

@@ -1,0 +1,24 @@
+# Build folders
+bin/
+obj/
+
+# Visual Studio temporary files
+.vs/
+*.user
+*.suo
+*.pdb
+*.cache
+*.log
+
+# VS Code settings
+.vscode/
+
+# Local configuration files
+appsettings.Development.json
+
+# Rider IDE
+.idea/
+
+# OS generated files
+Thumbs.db
+.DS_Store

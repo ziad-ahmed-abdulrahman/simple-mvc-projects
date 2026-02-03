@@ -1,0 +1,168 @@
+﻿@{
+    ViewBag.Title = "AES Encryption";
+
+    string inputText = "";
+    string inputKey = "";
+
+    if (Context.Request.Method == "POST")
+    {
+        inputText = Context.Request.Form["text"];
+        inputKey = Context.Request.Form["key"];
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.css" />
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #d9f0ff, #ffffff);
+        }
+
+        .encrypt-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 3rem 1rem;
+            min-height: calc(100vh - 56px);
+        }
+
+        .encrypt-form {
+            width: 100%;
+            max-width: 600px;
+            background-color: #ffffff; 
+            padding: 4rem 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15); 
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #0d6efd; 
+            font-weight: 600;
+        }
+
+        .form-label {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #222;
+            width: 90px;
+        }
+
+        .form-group-inline {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.7rem;
+        }
+
+            .form-group-inline input {
+                flex: 1;
+            }
+
+        .form-buttons {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-primary {
+            font-weight: 600;
+            padding: 0.8rem 1.2rem;
+            font-size: 1.1rem;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: #ffffff;
+            font-weight: 500;
+            padding: 0.7rem 1.2rem;
+        }
+
+        .alert {
+            margin-top: 1.7rem;
+            word-break: break-word;
+        }
+
+        /*  Add Photo */
+        body {
+            margin-bottom: 60px;
+            background-image: url('/images/padlocks-8050534_1280.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="encrypt-container">
+        <div class="encrypt-form">
+            <h2>AES Encryption</h2>
+
+            <form method="post" asp-action="Encrypt">
+
+                <!-- TEXT INPUT -->
+                <div class="form-group-inline">
+                    <label class="form-label me-3">Text</label>
+                    <input type="text" name="text"
+                           class="form-control form-control-lg"
+                           placeholder="Enter text"
+                           value="@inputText"
+                           required />
+                </div>
+
+                <!-- KEY INPUT -->
+                <div class="form-group-inline">
+                    <label class="form-label me-3">Key</label>
+                    <input type="text" name="key"
+                           class="form-control form-control-lg"
+                           placeholder="Enter 16-char AES key"
+                           value="@inputKey"
+                           required
+                           minlength="16"
+                           maxlength="16"
+                           title="AES key must be exactly 16 characters" />
+                </div>
+
+                <!-- BUTTONS -->
+                <div class="form-buttons">
+
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left me-2"></i> Back
+                    </a>
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-lock-fill me-2"></i> Encrypt
+                    </button>
+
+                </div>
+
+            </form>
+
+            <!-- RESULT -->
+            @if (ViewBag.EncryptedText != null)
+            {
+                <div class="alert alert-success">
+                    <strong>Encrypted:</strong> @ViewBag.EncryptedText
+                </div>
+            }
+
+        </div>
+    </div>
+
+</body>
+</html>
